@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from '../../services/users.service';
 import {Router} from '@angular/router';
+import {User} from '../../models/user.model';
 
 @Component({
   selector: 'ng-e-users-list',
@@ -9,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class UsersListComponent implements OnInit {
 
-  users: any;
+  users: User[];
   constructor(private usersService: UsersService,
               private router: Router) {
 
@@ -30,9 +31,19 @@ export class UsersListComponent implements OnInit {
    */
   getUsers() {
     if (!this.users ) {
-      this.usersService.getUsers({results: 20}).then(response => {
-        this.users = response.results;
+      this.usersService.getUsers({per_page: 12}).then(response => {
+        this.users = response.data.map(val => {
+          return {
+            id: val.id,
+            firstName: val.first_name,
+            lastName: val.last_name,
+            email: val.email,
+            avatar: val.avatar
+          };
+        });
         this.usersService.setUsers(this.users);
+
+        console.log(this.users);
       }).catch(err => {
       });
     } else {

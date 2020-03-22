@@ -1,17 +1,11 @@
 
 <div class="w-100 text-center row p-2 m-0" *ngIf="users?.length > 0">
-  <div class="col-12 col-md-6 col-lg-4 ml-auto mr-auto mt-5 h" *ngFor="let user of users" >
-    <div class="card p-1 w-100">
-      <div class="card-body">
-        <h2 class="card-title">{{user.name.first}} {{user.name.last}}</h2>
 
-        <div class="h6 font-weight-300">
-          <i class="fa fa-envelope"></i> &nbsp; {{user.email}}
-        </div>
-        <div class="h6 ">
-          <i class="fa fa-phone"></i>&nbsp;{{user.phone}}
-        </div>
-        <button type="button" class="btn btn-info mt-4" (click)="goToDetails(user)">Profile details</button>
+  <div class="col-12 col-md-4 col-lg-3 ml-auto mr-auto mt-2" *ngFor="let user of users" >
+    <div class="card  w-100">
+      <div class="card-body">
+        <h2 class="card-title">{{user.firstName}} {{user.lastName}}</h2>
+        <button type="button" class="btn btn-info" (click)="goToDetails(user)">Profile details</button>
       </div>
     </div>
   </div>

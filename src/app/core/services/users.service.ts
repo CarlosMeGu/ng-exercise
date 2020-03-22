@@ -15,7 +15,7 @@ export class UsersService {
    */
   getUsers(data) {
     return this.httpClient
-      .get('https://randomuser.me/api/', {
+      .get('https://reqres.in/api/users', {
         params: data
       })
       .toPromise()
