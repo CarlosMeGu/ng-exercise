@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {UsersService} from '../../services/users.service';
+import {User} from '../../models/user.model';
 
 @Component({
   selector: 'ng-e-user-detail',
@@ -9,10 +10,14 @@ import {UsersService} from '../../services/users.service';
 })
 export class UserDetailComponent implements OnInit {
 
-  userInfo: any;
+  userInfo: User;
+  id: number;
 
   constructor(private route: ActivatedRoute, private dataRoute: ActivatedRoute,
-              private usersService: UsersService) { }
+              private usersService: UsersService) {
+    this.id = this.route.snapshot.params.id;
+    console.log(this.id);
+  }
 
 
   /**
@@ -21,9 +26,19 @@ export class UserDetailComponent implements OnInit {
    * @info The spinner is just UX, can be removed
    */
   ngOnInit() {
-    this.userInfo = this.usersService.getCurrentUser();
-    setTimeout(() =>  {
-    }, 300);
+    this.usersService.getUsers({id: this.id}).then(response => {
+      console.log(response)
+      this.userInfo =  {
+          id: response.data.id,
+          firstName: response.data.first_name,
+          lastName: response.data.last_name,
+          email: response.data.email,
+          avatar: response.data.avatar
+        };
+      console.log(this.userInfo);
+    }).catch(err => {
+      console.log(err)
+    });
   }
 
   /**

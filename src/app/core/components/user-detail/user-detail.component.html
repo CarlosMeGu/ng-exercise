@@ -3,25 +3,22 @@
     <div class="row justify-content-center">
       <div class="col-lg-3 order-lg-2">
         <div class="text-center">
-            <img [src]="userInfo.picture.medium" class="rounded-circle">
+            <img [src]="userInfo.avatar" class="rounded-circle">
         </div>
       </div>
     </div>
     <div class="card-body">
       <div class="text-center">
         <h3>
-         {{userInfo.name.first}} {{userInfo.name.last}}
+         {{userInfo.firstName}} {{userInfo.lastName}}
         </h3>
-        <div class="h5 font-weight-300">
+        <div class="h6 font-weight-300">
           <i class="fa fa-envelope"></i> &nbsp; {{userInfo.email}}
-        </div>
-        <div class="h5 mt-4">
-          <i class="fa fa-phone"></i>&nbsp;{{userInfo.phone}}
         </div>
       </div>
     </div>
     <div>
-      <button routerLink="/home" type="button" class="btn btn-secondmoduary"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp; Back to users</button>
+      <button routerLink="/home" type="button" class="btn btn-secondary"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp; Back to users</button>
     </div>
   </div>
 </div>

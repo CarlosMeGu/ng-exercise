@@ -6,9 +6,11 @@ import { AppService } from './services/app.service';
 import {UsersService} from './services/users.service';
 import {UserDetailComponent} from './components/user-detail/user-detail.component';
 import {UsersListComponent} from './components/users-list/users-list.component';
+import {RouterModule} from '@angular/router';
+
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule ],
   declarations: [AppHeaderComponent, AppContentComponent, UsersListComponent, UserDetailComponent],
   exports: [AppHeaderComponent, AppContentComponent],
   providers: [AppService, UsersService]

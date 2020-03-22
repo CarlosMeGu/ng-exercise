@@ -9,11 +9,12 @@ import { HomeComponent } from './home/home.component';
 import { LandingComponent } from './landing/landing.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LandingComponent],
-  imports: [CommonModule, BrowserModule, AppRoutingModule, CoreModule,  HttpClientModule],
+  imports: [CommonModule, BrowserModule, AppRoutingModule, CoreModule,  HttpClientModule, RouterModule ],
   providers: [],
 
   bootstrap: [AppComponent]
