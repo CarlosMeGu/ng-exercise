@@ -1,17 +1,17 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {User} from '../models/user.model';
 
 @Injectable()
 export class UsersService {
 
-  private currentUser: any;
-  private tempUsers: any;
+  private tempUsers: User[];
   constructor(private httpClient: HttpClient) { }
 
   /**
    * @author Carlos Melgoza
-   * @desc Generate users with randomuser.me
-   * @param data, object with the query information, more info @ https://randomuser.me/documentation#intro
+   * @desc Generate users with reqres.in
+   * @param data, object with the query information, more info @ https://reqres.in/
    */
   getUsers(data) {
     return this.httpClient
@@ -25,27 +25,10 @@ export class UsersService {
 
   /**
    * @author Carlos Melgoza
-   * @desc Store current user in memory
-   * @param user, user to store
-   */
-  setCurrentUser(user) {
-    this.currentUser = user;
-  }
-
-  /**
-   * @author Carlos Melgoza
-   * @desc Get current user
-   */
-  getCurrentUser() {
-    return this.currentUser;
-  }
-
-  /**
-   * @author Carlos Melgoza
    * @desc Store all the users
    * @param users, Users to store
    */
-  setUsers(users) {
+  setUsers(users: User[]) {
     this.tempUsers = users;
   }
 

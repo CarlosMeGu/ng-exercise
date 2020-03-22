@@ -10,11 +10,12 @@ import { LandingComponent } from './landing/landing.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
+import {NgxUiLoaderModule} from 'ngx-ui-loader';
 
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LandingComponent],
-  imports: [CommonModule, BrowserModule, AppRoutingModule, CoreModule,  HttpClientModule, RouterModule ],
+  imports: [CommonModule, BrowserModule, AppRoutingModule, CoreModule,  HttpClientModule, RouterModule, NgxUiLoaderModule ],
   providers: [],
 
   bootstrap: [AppComponent]

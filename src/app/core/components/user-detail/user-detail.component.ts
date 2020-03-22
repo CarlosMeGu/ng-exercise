@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {UsersService} from '../../services/users.service';
 import {User} from '../../models/user.model';
+import {NgxUiLoaderService} from 'ngx-ui-loader';
 
 @Component({
   selector: 'ng-e-user-detail',
@@ -14,7 +15,7 @@ export class UserDetailComponent implements OnInit {
   id: number;
 
   constructor(private route: ActivatedRoute, private dataRoute: ActivatedRoute,
-              private usersService: UsersService) {
+              private usersService: UsersService, private ngxService: NgxUiLoaderService) {
     this.id = this.route.snapshot.params.id;
     console.log(this.id);
   }
@@ -26,8 +27,9 @@ export class UserDetailComponent implements OnInit {
    * @info The spinner is just UX, can be removed
    */
   ngOnInit() {
+    this.ngxService.start();
+
     this.usersService.getUsers({id: this.id}).then(response => {
-      console.log(response)
       this.userInfo =  {
           id: response.data.id,
           firstName: response.data.first_name,
@@ -35,18 +37,15 @@ export class UserDetailComponent implements OnInit {
           email: response.data.email,
           avatar: response.data.avatar
         };
-      console.log(this.userInfo);
+      this.ngxService.stop();
+
     }).catch(err => {
-      console.log(err)
+      this.ngxService.stop();
+
+      console.log(err);
     });
   }
 
-  /**
-   * @author Carlos Melgoza
-   * @desc Remove the current user detail, to improve memory usage
-   */
-  ngOnDestroy() {
-    this.usersService.setCurrentUser(null);
-  }
+
 
 }

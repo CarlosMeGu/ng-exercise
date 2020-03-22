@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UsersService} from '../../services/users.service';
 import {Router} from '@angular/router';
 import {User} from '../../models/user.model';
+import {NgxUiLoaderService} from 'ngx-ui-loader';
 
 @Component({
   selector: 'ng-e-users-list',
@@ -12,7 +13,7 @@ export class UsersListComponent implements OnInit {
 
   users: User[];
   constructor(private usersService: UsersService,
-              private router: Router) {
+              private router: Router, private ngxService: NgxUiLoaderService) {
 
   }
   /**
@@ -30,6 +31,7 @@ export class UsersListComponent implements OnInit {
    * @desc if there are no users, ask to the user service to retrieve 20 users, otherwise, just show the spinner to improve UX
    */
   getUsers() {
+    this.ngxService.start();
     if (!this.users ) {
       this.usersService.getUsers({per_page: 12}).then(response => {
         this.users = response.data.map(val => {
@@ -42,23 +44,17 @@ export class UsersListComponent implements OnInit {
           };
         });
         this.usersService.setUsers(this.users);
-
-        console.log(this.users);
+        this.ngxService.stop();
       }).catch(err => {
+        this.ngxService.stop();
+
       });
     } else {
       setTimeout(() =>  {
+        this.ngxService.stop();
+
       }, 200);
     }
   }
 
-  /**
-   * @author Carlos Melgoza
-   * @desc Store in memory the current user and move to user details page
-   * @param userInfo User to display additional information
-   */
-  goToDetails(userInfo) {
-    this.usersService.setCurrentUser(userInfo);
-    this.router.navigate(['home/details']);
-  }
 }
