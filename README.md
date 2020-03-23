@@ -1,3 +1,7 @@
+## [Fully working Demo | github pages](http://carlosmegu.me/ng-exercise/demo/#/landing)
+## [Fully working Demo | AWS S3](http://modus-carlosmegu.s3-website-us-east-1.amazonaws.com/#/home)
+
+
 # NgExercise
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
