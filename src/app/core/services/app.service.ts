@@ -22,7 +22,7 @@ export class AppService {
         for (const link of task.routerLinks) {
           updatedTask.description = task.description.replace(
             '{{link}}',
-            `<a href='/${link}' routerLink='${link}'>${link} route</a>`
+            `<a href='#/${link}' routerLink='${link}'>${link} route</a>`
           );
         }
       }
